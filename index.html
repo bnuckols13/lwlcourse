@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Life Worth Living — Existential Group Curriculum</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --p:#F4EDD3;--pd:#E8DDB8;--ink:#2C2416;--inkm:#4A3F30;--sl:#6B5F52;
+  --sage:#87A878;--dsage:#5A7A50;--terra:#C17B4A;--dterra:#9E5B2A;
+  --rose:#C4959D;--drose:#9A606A;--gold:#B8960C;--bgold:#D4AE20;
+  --stone:#9A8E82;--dstone:#6B6058;--blue:#7A9AB0;--dblue:#5A7A90;
+  --cream:#FBF5E6;--ww:#FDF9F0;
+  --gs:linear-gradient(135deg,#87A878,#5A7A50);
+  --gt:linear-gradient(135deg,#C17B4A,#9E5B2A);
+  --gw:linear-gradient(135deg,#C4959D,#9A606A);
+  --ge:linear-gradient(135deg,#87A878,#C17B4A);
+  --gg:linear-gradient(135deg,#D4AE20,#9A7808);
+  --gst:linear-gradient(135deg,#9A8E82,#6B6058);
+  --gb:linear-gradient(135deg,#7A9AB0,#5A7A90);
+}
+body{font-family:'EB Garamond',Georgia,serif;background:var(--p);
+  background-image:radial-gradient(ellipse at 20% 10%,rgba(135,168,120,.12) 0%,transparent 60%),
+  radial-gradient(ellipse at 80% 90%,rgba(193,123,74,.10) 0%,transparent 60%);
+  min-height:100vh;color:var(--ink);overflow-x:hidden}
+
+/* background symbols */
+.bgsym{position:fixed;font-family:'Cinzel',serif;font-size:9rem;opacity:.04;
+  pointer-events:none;color:var(--ink);animation:bgd 30s infinite ease-in-out;z-index:0;user-select:none}
+.bgsym:nth-child(1){top:5%;right:8%}
+.bgsym:nth-child(2){bottom:15%;left:6%;font-size:7rem;animation-delay:-10s}
+.bgsym:nth-child(3){top:45%;right:20%;font-size:6rem;animation-delay:-20s}
+@keyframes bgd{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-20px) rotate(3deg)}}
+
+.app{max-width:1100px;margin:0 auto;padding:2rem;position:relative;z-index:1}
+
+/* ── OVERVIEW ── */
+.overview-view{}
+.tome-head{text-align:center;padding:3rem 2rem 2rem}
+.tome-orn{font-family:'Cinzel',serif;font-size:2.8rem;color:var(--bgold);letter-spacing:.3em;opacity:.75;margin-bottom:.4rem}
+.tome-title{font-family:'Cinzel',serif;font-size:3rem;font-weight:700;line-height:1.1;margin-bottom:.3rem}
+.tome-sub{display:block;font-family:'Cinzel',serif;font-size:1.2rem;font-weight:400;font-style:italic;color:var(--sl);letter-spacing:.12em;margin-top:.4rem}
+.tome-div{display:flex;align-items:center;gap:1rem;justify-content:center;margin:1.5rem 0;color:var(--bgold)}
+.tome-div::before,.tome-div::after{content:'';flex:1;max-width:140px;height:1px;background:linear-gradient(90deg,transparent,var(--bgold),transparent)}
+.tome-desc{max-width:680px;margin:0 auto;color:var(--sl);font-size:1.1rem;line-height:1.85;font-style:italic}
+.course-prog{background:rgba(255,255,255,.5);border:1px solid var(--pd);border-radius:12px;padding:1.1rem 1.8rem;
+  margin:2rem 0;display:flex;align-items:center;gap:1.5rem}
+.cp-label{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;color:var(--sl);text-transform:uppercase;white-space:nowrap}
+.cp-track{flex:1;height:6px;background:var(--pd);border-radius:3px;overflow:hidden}
+.cp-fill{height:100%;background:var(--ge);border-radius:3px;transition:width .5s ease}
+.cp-frac{font-family:'Cinzel',serif;font-size:.85rem;color:var(--terra);white-space:nowrap}
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(295px,1fr));gap:1.3rem;margin-top:1.2rem}
+.cc{background:var(--ww);border:1px solid var(--pd);border-radius:16px;padding:1.5rem;cursor:pointer;
+  transition:all .3s;position:relative;overflow:hidden}
+.cc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.cc:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(44,36,22,.12)}
+.cc.done{background:rgba(135,168,120,.05)}
+.cc.done::after{content:'◆';position:absolute;top:.9rem;right:1rem;color:var(--sage);font-size:.85rem}
+.cc.sage::before{background:var(--gs)}.cc.stone::before{background:var(--gst)}
+.cc.blue::before{background:var(--gb)}.cc.gold::before{background:var(--gg)}
+.cc.rose::before{background:var(--gw)}.cc.terra::before{background:var(--gt)}
+.cc-num{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;color:var(--stone);text-transform:uppercase;margin-bottom:.5rem}
+.cc-rune{font-family:'Cinzel',serif;font-size:2.4rem;line-height:1;margin-bottom:.4rem}
+.cc.sage .cc-rune{color:var(--dsage)}.cc.stone .cc-rune{color:var(--dstone)}
+.cc.blue .cc-rune{color:var(--dblue)}.cc.gold .cc-rune{color:var(--gold)}
+.cc.rose .cc-rune{color:var(--drose)}.cc.terra .cc-rune{color:var(--dterra)}
+.cc-title{font-family:'Cinzel',serif;font-size:1.25rem;font-weight:600;color:var(--ink);margin-bottom:.25rem}
+.cc-sub{font-style:italic;color:var(--sl);font-size:.92rem;margin-bottom:.7rem}
+.cc-desc{font-size:.88rem;color:var(--sl);line-height:1.6}
+.cc-cta{display:inline-block;margin-top:.9rem;font-family:'Cinzel',serif;font-size:.72rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--terra);border-bottom:1px solid currentColor}
+
+/* ── SESSION VIEW ── */
+.session-view{display:none}
+.sess-head{display:flex;align-items:flex-start;gap:1.3rem;padding:2rem 0 1.3rem;
+  border-bottom:1px solid var(--pd);margin-bottom:1.8rem;flex-wrap:wrap}
+.sess-rune{font-family:'Cinzel',serif;font-size:3.8rem;line-height:1;flex-shrink:0}
+.sess-head-txt{flex:1;min-width:180px}
+.sess-lbl{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);margin-bottom:.25rem}
+.sess-title{font-family:'Cinzel',serif;font-size:2rem;font-weight:700;color:var(--ink);line-height:1.1}
+.sess-theme{font-style:italic;color:var(--sl);font-size:1rem;display:block;margin-top:.3rem}
+.back-btn{flex-shrink:0;background:none;border:1px solid var(--pd);border-radius:8px;
+  padding:.5rem 1rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.1em;
+  color:var(--sl);cursor:pointer;text-transform:uppercase;transition:all .2s}
+.back-btn:hover{background:var(--pd)}
+
+/* step tabs */
+.step-tabs{display:flex;border:1px solid var(--pd);border-radius:10px;overflow:hidden;
+  background:var(--ww);margin-bottom:1.8rem}
+.st{flex:1;padding:.65rem .4rem;text-align:center;font-family:'Cinzel',serif;font-size:.68rem;
+  letter-spacing:.07em;text-transform:uppercase;color:var(--stone);cursor:pointer;
+  border:none;background:none;border-right:1px solid var(--pd);transition:all .2s}
+.st:last-child{border-right:none}
+.st:hover{background:rgba(135,168,120,.08);color:var(--sl)}
+.st.active{background:var(--ge);color:white}
+.st.done{color:var(--dsage)}
+
+/* panes */
+.sp{display:none}.sp.active{display:block;animation:fu .4s ease}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* cards */
+.card{background:var(--ww);border:1px solid var(--pd);border-radius:16px;padding:1.7rem;
+  margin-bottom:1.3rem;position:relative;overflow:hidden}
+.card h2{font-family:'Cinzel',serif;font-size:1.35rem;font-weight:600;color:var(--ink);
+  margin-bottom:.85rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.card h3{font-family:'Cinzel',serif;font-size:.97rem;font-weight:600;color:var(--inkm);margin-bottom:.55rem;letter-spacing:.03em}
+.card p{color:var(--sl);line-height:1.8;margin-bottom:.65rem}
+.card p:last-child{margin-bottom:0}
+
+/* accent tops */
+.card.at-sage::before,.card.at-stone::before,.card.at-blue::before,
+.card.at-gold::before,.card.at-rose::before,.card.at-terra::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card.at-sage::before{background:var(--gs)}.card.at-stone::before{background:var(--gst)}
+.card.at-blue::before{background:var(--gb)}.card.at-gold::before{background:var(--gg)}
+.card.at-rose::before{background:var(--gw)}.card.at-terra::before{background:var(--gt)}
+
+.timing{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.1em;padding:.2rem .65rem;
+  border-radius:20px;background:rgba(135,168,120,.14);color:var(--dsage);text-transform:uppercase;margin-left:auto}
+
+/* pass */
+.pass{display:flex;align-items:flex-start;gap:.6rem;background:rgba(193,123,74,.06);
+  border-left:3px solid var(--terra);padding:.7rem 1rem;border-radius:0 10px 10px 0;
+  margin-bottom:1.1rem;font-size:.9rem;color:var(--sl)}
+.pass-sym{color:var(--terra);flex-shrink:0}
+
+/* wisdom quote */
+.wq{background:rgba(135,168,120,.07);border-left:3px solid var(--sage);padding:1rem 1.4rem;
+  border-radius:0 12px 12px 0;margin:1rem 0;font-style:italic;color:var(--inkm);line-height:1.8;font-size:1.04rem}
+.wq cite{display:block;font-style:normal;font-family:'Cinzel',serif;font-size:.72rem;
+  letter-spacing:.08em;color:var(--stone);margin-top:.4rem}
+
+/* info blocks */
+.ib{padding:1rem 1.25rem;border-radius:12px;margin-bottom:.9rem}
+.ib h3{margin-bottom:.45rem;font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.03em}
+.ib ul{list-style:none;color:var(--sl);line-height:1.9}
+.ib ul li::before{content:"◆ ";font-size:.68rem}
+.ib.sage{background:rgba(135,168,120,.10)}.ib.sage h3,.ib.sage ul li::before{color:var(--dsage)}
+.ib.terra{background:rgba(193,123,74,.09)}.ib.terra h3,.ib.terra ul li::before{color:var(--dterra)}
+.ib.gold{background:rgba(184,150,12,.09)}.ib.gold h3,.ib.gold ul li::before{color:var(--gold)}
+.ib.rose{background:rgba(196,149,157,.10)}.ib.rose h3,.ib.rose ul li::before{color:var(--drose)}
+.ib.stone{background:rgba(154,142,130,.10)}.ib.stone h3,.ib.stone ul li::before{color:var(--dstone)}
+.ib.blue{background:rgba(122,154,176,.10)}.ib.blue h3,.ib.blue ul li::before{color:var(--dblue)}
+
+/* core message */
+.cm{background:linear-gradient(135deg,rgba(135,168,120,.07),rgba(193,123,74,.06));
+  border:1px solid rgba(135,168,120,.22);border-radius:12px;padding:1.1rem 1.4rem;
+  color:var(--sl);line-height:1.8;margin:1rem 0}
+.cm strong{color:var(--dterra)}
+
+/* facilitator toggle */
+.fac{background:rgba(122,154,176,.08);border-radius:10px;overflow:hidden;margin-top:.9rem}
+.facbtn{width:100%;background:none;border:none;padding:.75rem 1.1rem;text-align:left;cursor:pointer;
+  font-family:'Cinzel',serif;font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--dblue);display:flex;align-items:center;gap:.5rem}
+.facbody{display:none;padding:0 1.1rem .9rem;font-size:.89rem;color:var(--sl);line-height:1.7}
+.facbody.open{display:block}
+
+/* check-in elements */
+.zone-row{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin:.9rem 0}
+.zb{padding:.85rem .4rem;border-radius:12px;border:2px solid transparent;background:var(--ww);
+  cursor:pointer;text-align:center;transition:all .25s;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.04em}
+.zb .zs{font-size:1.3rem;display:block;margin-bottom:.25rem}
+.zb.green{border-color:var(--sage);background:rgba(135,168,120,.08);color:var(--dsage)}
+.zb.yellow{border-color:#C8A82C;background:rgba(200,168,44,.08);color:#8A6800}
+.zb.red{border-color:var(--rose);background:rgba(196,149,157,.10);color:var(--drose)}
+.zb.sel{transform:scale(1.05);box-shadow:0 4px 14px rgba(0,0,0,.12)}
+
+.emo-chips{display:flex;flex-wrap:wrap;gap:.45rem;margin:.75rem 0}
+.ec{padding:.3rem .8rem;border-radius:20px;border:1px solid var(--pd);background:var(--ww);
+  cursor:pointer;font-size:.87rem;color:var(--sl);transition:all .2s}
+.ec:hover{border-color:var(--sage)}
+.ec.sel{background:var(--sage);border-color:var(--sage);color:white}
+
+.bridge{background:rgba(184,150,12,.07);border-left:3px solid var(--bgold);
+  padding:.95rem 1.25rem;border-radius:0 12px 12px 0;margin:1rem 0}
+.bridge-lbl{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--bgold);margin-bottom:.35rem}
+.bridge p{color:var(--inkm);line-height:1.75;font-style:italic;font-size:1.04rem;margin-bottom:0}
+
+/* practice elements */
+.flip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.9rem;margin:.8rem 0}
+.flip-card{background:var(--ww);border:1px solid var(--pd);border-radius:14px;padding:1.2rem;
+  cursor:pointer;transition:all .3s;min-height:140px}
+.flip-card:hover:not(.flipped){transform:translateY(-3px);box-shadow:0 8px 22px rgba(44,36,22,.10)}
+.flip-card.flipped{background:rgba(135,168,120,.07);border-color:rgba(135,168,120,.3)}
+.fc-front h4{font-family:'Cinzel',serif;font-size:.9rem;color:var(--inkm);margin-bottom:.4rem}
+.fc-front p{font-size:.88rem;color:var(--sl);line-height:1.6}
+.fc-back{display:none}
+.flip-card.flipped .fc-front{display:none}
+.flip-card.flipped .fc-back{display:block}
+.fc-back h4{font-family:'Cinzel',serif;font-size:.82rem;color:var(--dsage);margin-bottom:.35rem;
+  text-transform:uppercase;letter-spacing:.06em}
+.fc-back p{font-size:.88rem;color:var(--sl);line-height:1.6}
+.fc-back .dprompt{margin-top:.6rem;font-style:italic;color:var(--inkm);font-size:.88rem;
+  border-top:1px solid rgba(135,168,120,.25);padding-top:.5rem}
+
+.reveal-cards{display:flex;flex-direction:column;gap:.8rem}
+.rv-card{background:var(--ww);border:1px solid var(--pd);border-radius:12px;overflow:hidden}
+.rv-btn{width:100%;background:none;border:none;padding:.9rem 1.2rem;text-align:left;
+  cursor:pointer;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.06em;
+  color:var(--inkm);display:flex;align-items:center;gap:.6rem}
+.rv-btn .rv-num{width:26px;height:26px;border-radius:50%;background:var(--ge);color:white;
+  display:flex;align-items:center;justify-content:center;font-size:.78rem;flex-shrink:0}
+.rv-body{display:none;padding:0 1.2rem 1rem;font-size:.96rem;color:var(--sl);line-height:1.75;font-style:italic}
+.rv-body.open{display:block;animation:fu .3s ease}
+
+.three-rooms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:.8rem 0}
+.room{border:1px solid var(--pd);border-radius:14px;padding:1.3rem;cursor:pointer;transition:all .3s;background:var(--ww)}
+.room:hover,.room.open{box-shadow:0 6px 20px rgba(44,36,22,.10)}
+.room.open{border-width:2px}
+.room.r1.open{border-color:var(--blue)}
+.room.r2.open{border-color:var(--rose)}
+.room.r3.open{border-color:var(--sage)}
+.room h4{font-family:'Cinzel',serif;font-size:1rem;color:var(--inkm);margin-bottom:.4rem}
+.room p{font-size:.88rem;color:var(--sl);line-height:1.6}
+.room-expand{display:none;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--pd)}
+.room.open .room-expand{display:block;animation:fu .3s ease}
+.room-expand .dprompt{font-style:italic;color:var(--inkm);font-size:.9rem;line-height:1.7}
+
+.mc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin:.8rem 0}
+.mc-source{border:1px solid var(--pd);border-radius:14px;padding:1.3rem;cursor:pointer;transition:all .3s;background:var(--ww)}
+.mc-source:hover,.mc-source.open{box-shadow:0 6px 20px rgba(44,36,22,.10)}
+.mc-source.open{border-width:2px}
+.mc-source.s1.open{border-color:var(--sage)}.mc-source.s2.open{border-color:var(--gold)}.mc-source.s3.open{border-color:var(--terra)}
+.mc-rune{font-family:'Cinzel',serif;font-size:1.9rem;margin-bottom:.3rem}
+.mc-source.s1 .mc-rune{color:var(--dsage)}.mc-source.s2 .mc-rune{color:var(--gold)}.mc-source.s3 .mc-rune{color:var(--dterra)}
+.mc-source h4{font-family:'Cinzel',serif;font-size:1rem;color:var(--inkm);margin-bottom:.35rem}
+.mc-source p{font-size:.88rem;color:var(--sl);line-height:1.6}
+.mc-expand{display:none;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--pd)}
+.mc-source.open .mc-expand{display:block;animation:fu .3s ease}
+.mc-expand .mc-prompt{font-style:italic;color:var(--inkm);font-size:.9rem;line-height:1.7}
+.mc-expand .mc-example{font-size:.85rem;color:var(--stone);margin-top:.4rem}
+
+.gap-map{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:.8rem 0}
+.gap-col{border:1px solid var(--pd);border-radius:14px;padding:1.3rem;background:var(--ww)}
+.gap-col h4{font-family:'Cinzel',serif;font-size:.95rem;font-weight:600;margin-bottom:.8rem;text-align:center}
+.gap-col.inside h4{color:var(--drose)}
+.gap-col.outside h4{color:var(--dblue)}
+.gap-row{display:flex;justify-content:space-between;align-items:center;padding:.45rem .5rem;
+  border-radius:8px;margin-bottom:.35rem;font-size:.88rem}
+.gap-row:nth-child(even){background:rgba(0,0,0,.03)}
+.gap-row .domain{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.06em;color:var(--stone);text-transform:uppercase}
+.gap-row .inside-val{color:var(--drose);font-style:italic;text-align:right;flex:1;margin-left:.5rem}
+.gap-row .outside-val{color:var(--dblue);font-style:italic;text-align:right;flex:1;margin-left:.5rem}
+
+.forge-stages{display:flex;flex-direction:column;gap:.9rem;margin:.8rem 0}
+.forge-stage{border:1px solid var(--pd);border-radius:14px;padding:1.3rem;background:var(--ww);
+  cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.forge-stage::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--gt);border-radius:3px 0 0 3px}
+.forge-stage:hover{box-shadow:0 6px 20px rgba(44,36,22,.09)}
+.forge-num{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dterra);margin-bottom:.3rem}
+.forge-stage h4{font-family:'Cinzel',serif;font-size:.98rem;color:var(--inkm);margin-bottom:.35rem}
+.forge-stage p{font-size:.9rem;color:var(--sl);line-height:1.65}
+.forge-expand{display:none;margin-top:.8rem;padding-top:.8rem;border-top:1px solid var(--pd)}
+.forge-stage.open .forge-expand{display:block;animation:fu .3s ease}
+.forge-ex{font-style:italic;color:var(--inkm);font-size:.92rem;line-height:1.75}
+
+/* discussion prompts */
+.dlist{display:flex;flex-direction:column;gap:.8rem}
+.dc{background:var(--p);border-left:4px solid var(--sage);padding:.9rem 1.2rem;border-radius:0 12px 12px 0}
+.dc.terra{border-color:var(--terra)}.dc.gold{border-color:var(--bgold)}.dc.rose{border-color:var(--rose)}
+.dc.stone{border-color:var(--stone)}.dc.blue{border-color:var(--blue)}
+.dlbl{font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem;color:var(--dsage)}
+.dc.terra .dlbl{color:var(--dterra)}.dc.gold .dlbl{color:var(--gold)}.dc.rose .dlbl{color:var(--drose)}
+.dc.stone .dlbl{color:var(--dstone)}.dc.blue .dlbl{color:var(--dblue)}
+.dc p{color:var(--inkm);line-height:1.7;font-size:.96rem;margin-bottom:0}
+
+/* affirmations */
+.affs{display:flex;flex-direction:column;gap:.75rem;margin:.8rem 0}
+.aff{display:flex;align-items:flex-start;gap:.65rem;padding:.85rem 1rem;
+  background:rgba(135,168,120,.06);border-radius:10px;font-size:.96rem;color:var(--sl);line-height:1.65}
+.aff-s{color:var(--sage);flex-shrink:0;font-size:1rem;margin-top:2px}
+
+/* closing */
+.cscript{background:linear-gradient(135deg,rgba(135,168,120,.07),rgba(193,123,74,.06));
+  border:1px solid rgba(184,150,12,.18);border-radius:14px;padding:1.4rem 1.7rem;
+  font-style:italic;color:var(--inkm);line-height:1.9;font-size:1.01rem}
+.cscript strong{font-style:normal;color:var(--dsage)}
+
+/* nav buttons */
+.btnrow{display:flex;gap:.8rem;justify-content:flex-end;margin-top:1.8rem;flex-wrap:wrap}
+.btnp{padding:.65rem 1.7rem;background:var(--ge);color:white;border:none;border-radius:30px;
+  font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;
+  cursor:pointer;box-shadow:0 4px 14px rgba(193,123,74,.28);transition:all .25s}
+.btnp:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(193,123,74,.35)}
+.btns{padding:.65rem 1.7rem;background:var(--ww);color:var(--sl);border:1px solid var(--pd);
+  border-radius:30px;font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;
+  text-transform:uppercase;cursor:pointer;transition:all .25s}
+.btns:hover{background:var(--pd)}
+.complete-badge{text-align:center;padding:2rem;background:linear-gradient(135deg,rgba(135,168,120,.09),rgba(193,123,74,.07));
+  border:1px solid rgba(184,150,12,.2);border-radius:16px;margin-top:1rem}
+.complete-badge .cb-rune{font-family:'Cinzel',serif;font-size:3rem;color:var(--bgold);margin-bottom:.5rem}
+.complete-badge h3{font-family:'Cinzel',serif;font-size:1.5rem;color:var(--ink);margin-bottom:.5rem}
+.complete-badge p{color:var(--sl);font-style:italic;font-size:1rem;line-height:1.75}
+
+@media(max-width:700px){
+  .tome-title{font-size:2.1rem}.app{padding:1rem}.chapter-grid{grid-template-columns:1fr}
+  .st{font-size:.6rem;padding:.6rem .25rem}.sess-head{flex-wrap:wrap}.gap-map{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}}
+</style>
+</head>
+<body>
+<div class="bgsym">◈</div>
+<div class="bgsym">◆</div>
+<div class="bgsym">◇</div>
+
+<div class="app">
+
+<!-- ═══════════════════════════════════════ -->
+<!-- OVERVIEW                               -->
+<!-- ═══════════════════════════════════════ -->
+<div class="overview-view" id="overview">
+
+  <div class="tome-head">
+    <div class="tome-orn">◆ ◇ ◆</div>
+    <h1 class="tome-title">Life Worth Living
+      <span>An Existential Group Curriculum</span>
+    </h1>
+    <div class="tome-div">◆ ᚠ ᛞ ᛁ ᛗ ᛋ ᛈ ◆</div>
+    <p class="tome-desc">Six sessions exploring freedom, finitude, isolation, meaning, authenticity, and suffering. This curriculum does not offer answers. It offers better questions — and the courage to sit with them honestly.</p>
+  </div>
+
+  <div class="course-prog">
+    <span class="cp-label">Course Progress</span>
+    <div class="cp-track"><div class="cp-fill" id="cpFill" style="width:0%"></div></div>
+    <span class="cp-frac" id="cpFrac">0 of 6 sessions</span>
+  </div>
+
+  <div class="chapter-grid">
+    <div class="cc sage" onclick="openSession(0)">
+      <div class="cc-num">Session I</div>
+      <div class="cc-rune">ᚠ</div>
+      <div class="cc-title">Freedom</div>
+      <div class="cc-sub">The Terror &amp; Gift of Choice</div>
+      <div class="cc-desc">Sartre's radical freedom, bad faith, and what it means that no one is making your choices for you — including the disorder.</div>
+      <div class="cc-cta">Open Session →</div>
+    </div>
+    <div class="cc stone" onclick="openSession(1)">
+      <div class="cc-num">Session II</div>
+      <div class="cc-rune">ᛞ</div>
+      <div class="cc-title">Death</div>
+      <div class="cc-sub">Your Finite, Precious Life</div>
+      <div class="cc-desc">Heidegger's being-toward-death, Becker's immortality projects, and how awareness of finitude makes life matter more, not less.</div>
+      <div class="cc-cta">Open Session →</div>
+    </div>
+    <div class="cc blue" onclick="openSession(2)">
+      <div class="cc-num">Session III</div>
+      <div class="cc-rune">ᛁ</div>
+      <div class="cc-title">Isolation</div>
+      <div class="cc-sub">Alone Together</div>
+      <div class="cc-desc">Yalom's three types of isolation — interpersonal, intrapersonal, and existential — and the paradox that accepting aloneness deepens connection.</div>
+      <div class="cc-cta">Open Session →</div>
+    </div>
+    <div class="cc gold" onclick="openSession(3)">
+      <div class="cc-num">Session IV</div>
+      <div class="cc-rune">ᛗ</div>
+      <div class="cc-title">Meaning</div>
+      <div class="cc-sub">Where Meaning Lives</div>
+      <div class="cc-desc">Frankl's logotherapy, the three sources of meaning, and how the disorder steals the capacity for genuine meaning-making.</div>
+      <div class="cc-cta">Open Session →</div>
+    </div>
+    <div class="cc rose" onclick="openSession(4)">
+      <div class="cc-num">Session V</div>
+      <div class="cc-rune">ᛋ</div>
+      <div class="cc-title">Authenticity</div>
+      <div class="cc-sub">The Gap Within</div>
+      <div class="cc-desc">The distance between the self you feel and the self you show. Sartre's bad faith, the false self as protection, and the courage required to close the gap.</div>
+      <div class="cc-cta">Open Session →</div>
+    </div>
+    <div class="cc terra" onclick="openSession(5)">
+      <div class="cc-num">Session VI</div>
+      <div class="cc-rune">ᛈ</div>
+      <div class="cc-title">Suffering</div>
+      <div class="cc-sub">The Phoenix Story</div>
+      <div class="cc-desc">Frankl's attitudinal values, the last human freedom, and what it means to face unavoidable suffering with dignity rather than despair.</div>
+      <div class="cc-cta">Open Session →</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- SESSION VIEW                           -->
+<!-- ═══════════════════════════════════════ -->
+<div class="session-view" id="sessionView">
+
+  <!-- dynamic header -->
+  <div class="sess-head">
+    <div class="sess-rune" id="sHdrRune">ᚠ</div>
+    <div class="sess-head-txt">
+      <div class="sess-lbl" id="sHdrLbl">Session I</div>
+      <div class="sess-title" id="sHdrTitle">Freedom</div>
+      <span class="sess-theme" id="sHdrTheme">The Terror &amp; Gift of Choice</span>
+    </div>
+    <button class="back-btn" onclick="backToOverview()">← All Sessions</button>
+  </div>
+
+  <!-- step tabs -->
+  <div class="step-tabs">
+    <button class="st active" id="tab0" onclick="goStep(0)">Opening</button>
+    <button class="st" id="tab1" onclick="goStep(1)">Learning</button>
+    <button class="st" id="tab2" onclick="goStep(2)">Practice</button>
+    <button class="st" id="tab3" onclick="goStep(3)">Integration</button>
+  </div>
+
+  <!-- ─────────────────────── SESSION 1: FREEDOM ─────────────────────── -->
+  <div class="sess-panes" id="sess0">
+
+    <!-- Opening -->
+    <div class="sp active" id="s0-p0">
+      <div class="card at-sage">
+        <h2>Opening <span class="timing">8–10 min</span></h2>
+        <p>Today we're talking about a concept that sounds simple and turns out to be terrifying: you are free. You have always been free. Even now.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>Passes are always okay — on any question, at any point. Listening counts as full participation.</div></div>
+        <div class="fac"><button class="facbtn" onclick="tog(this)">▶ Facilitator opening script</button>
+          <div class="facbody">"Welcome. Today's session lives in uncomfortable territory — the idea that you are radically, sometimes terrifyingly free. That no one is doing your life for you. That every choice, including the ones that feel like they're not choices, is still yours. We're not here to beat anyone over the head with that. We're here to look at it honestly — because looking at it honestly is the only way it becomes useful."</div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Arrival Practice <span class="timing">3 min</span></h2>
+        <p>Take three slow breaths. On each exhale, let your weight settle a little more fully into wherever you're sitting. Notice the floor. Notice the room.</p>
+        <div class="ib sage"><h3>Brief Body Scan</h3><ul>
+          <li>Where are you holding tension right now?</li>
+          <li>What's the temperature in your chest?</li>
+          <li>Is there anything your body is bracing against?</li>
+        </ul></div>
+        <h3>Where are you right now?</h3>
+        <div class="zone-row">
+          <div class="zb green" onclick="selZone(this)"><span class="zs">◆</span>Regulated<br><small>Present, grounded</small></div>
+          <div class="zb yellow" onclick="selZone(this)"><span class="zs">◇</span>On Edge<br><small>Alert, activated</small></div>
+          <div class="zb red" onclick="selZone(this)"><span class="zs">△</span>Flooded<br><small>Overwhelmed, shut down</small></div>
+        </div>
+        <p style="margin-top:.5rem">What's present for you emotionally?</p>
+        <div class="emo-chips">
+          <span class="ec" onclick="selChip(this)">Anxious</span><span class="ec" onclick="selChip(this)">Heavy</span><span class="ec" onclick="selChip(this)">Resistant</span>
+          <span class="ec" onclick="selChip(this)">Curious</span><span class="ec" onclick="selChip(this)">Numb</span><span class="ec" onclick="selChip(this)">Hopeful</span>
+          <span class="ec" onclick="selChip(this)">Tired</span><span class="ec" onclick="selChip(this)">Open</span><span class="ec" onclick="selChip(this)">Scared</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Bridge Question</h2>
+        <div class="bridge"><div class="bridge-lbl">Into Today's Session</div>
+          <p>Is there a part of your recovery — or your life — where you've been treating a choice as if it's not really yours to make?</p>
+        </div>
+        <div class="fac"><button class="facbtn" onclick="tog(this)">▶ Facilitator note</button>
+          <div class="facbody">Don't over-process this question before moving to the learning section. A quick round is enough — one sentence each, or just a nod. The goal is to land the theme in the room before the psychoeducation does the heavier lifting.</div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btnp" onclick="goStep(1)">Learning →</button></div>
+    </div>
+
+    <!-- Learning -->
+    <div class="sp" id="s0-p1">
+      <div class="card at-sage">
+        <h2>Freedom &amp; Responsibility</h2>
+        <div class="wq">"We are condemned to be free. Existence precedes essence." <cite>— Jean-Paul Sartre</cite></div>
+        <p>Sartre's core claim is radical: there is no predetermined nature, no cosmic script, no authority telling you who to be. You exist first. Then you create yourself through choices. All of them.</p>
+        <div class="cm"><strong>Core message:</strong> There is no escape from freedom — only the illusion of escape. The eating disorder is one of those illusions. It offers the feeling of having no choice, which is temporarily less terrifying than having all the choices.</div>
+      </div>
+      <div class="card">
+        <h2>Bad Faith</h2>
+        <p>Sartre's term for the move we make when we pretend we have no choice — when we become a "thing" rather than a free subject. Bad faith is not lying to others. It's lying to yourself about your own freedom.</p>
+        <div class="ib sage"><h3>Bad faith sounds like…</h3><ul>
+          <li>"I can't help it — that's just who I am"</li>
+          <li>"I don't have a choice in this"</li>
+          <li>"The disorder makes me do it"</li>
+          <li>"I'd change, but I can't"</li>
+          <li>"I'm not the kind of person who can…"</li>
+        </ul></div>
+        <div class="ib terra"><h3>What bad faith is protecting against</h3><ul>
+          <li>The terror of being fully responsible for your own life</li>
+          <li>The grief of having made choices that hurt you</li>
+          <li>The exposure of admitting you want something different</li>
+          <li>The work of actually changing</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <h2>Response-ability</h2>
+        <p>Viktor Frankl, writing from inside a Nazi concentration camp, introduced the concept of response-ability: not the absence of difficult circumstances, but the <em>ability to choose your response</em> to them. Even in the worst conditions, that remains yours.</p>
+        <div class="ib stone"><h3>The distinction that matters</h3><ul>
+          <li>You did not choose your trauma, your neurology, your family, your disorder's origins</li>
+          <li>You did not choose to suffer</li>
+          <li>You <em>do</em> choose — every day — what you do next</li>
+          <li>Both are true. Neither cancels the other.</li>
+        </ul></div>
+        <div class="fac"><button class="facbtn" onclick="tog(this)">▶ Facilitator note</button>
+          <div class="facbody">The responsibility piece can land as blame if it's not handled carefully. Make sure to hold both sides: the circumstances were real, the pain is real, AND the agency is real. The goal is not to shame anyone for past choices — it's to open the door to future ones. Watch for shutdown responses and name the distinction explicitly if needed.</div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(0)">← Opening</button><button class="btnp" onclick="goStep(2)">Practice →</button></div>
+    </div>
+
+    <!-- Practice -->
+    <div class="sp" id="s0-p2">
+      <div class="card at-sage">
+        <h2>The Choice Audit <span class="timing">15 min</span></h2>
+        <p>Six domains of life. Each card shows a common "bad faith" pattern in that domain — a way of pretending you have no choice. Click to reveal the pattern and the question underneath.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>Move at the group's pace. Stay with any card that generates energy. Skip cards that don't land today.</div></div>
+        <div class="flip-grid">
+          <div class="flip-card" onclick="flip(this)">
+            <div class="fc-front"><h4>Recovery</h4><p>Click to reveal the pattern</p></div>
+            <div class="fc-back"><h4>The Pattern</h4><p>"Recovery has to happen on my terms or not at all." Using conditions to avoid the choice.</p><div class="dprompt">Where are you adding conditions that make the choice disappear?</div></div>
+          </div>
+          <div class="flip-card" onclick="flip(this)">
+            <div class="fc-front"><h4>Relationships</h4><p>Click to reveal the pattern</p></div>
+            <div class="fc-back"><h4>The Pattern</h4><p>"I can't reach out — they'll think less of me." Fear dressed up as inevitability.</p><div class="dprompt">What would you risk if you let yourself choose connection?</div></div>
+          </div>
+          <div class="flip-card" onclick="flip(this)">
+            <div class="fc-front"><h4>Identity</h4><p>Click to reveal the pattern</p></div>
+            <div class="fc-back"><h4>The Pattern</h4><p>"I don't know who I am without this." Making the disorder permanent by treating it as essential.</p><div class="dprompt">What identity are you avoiding by keeping this one?</div></div>
+          </div>
+          <div class="flip-card" onclick="flip(this)">
+            <div class="fc-front"><h4>Body</h4><p>Click to reveal the pattern</p></div>
+            <div class="fc-back"><h4>The Pattern</h4><p>"I can't trust my body — it always lies." Outsourcing bodily authority to rules.</p><div class="dprompt">What would it mean to take responsibility for one bodily choice today?</div></div>
+          </div>
+          <div class="flip-card" onclick="flip(this)">
+            <div class="fc-front"><h4>Future</h4><p>Click to reveal the pattern</p></div>
+            <div class="fc-back"><h4>The Pattern</h4><p>"I'll deal with that when I'm better." Using a future threshold to avoid present choosing.</p><div class="dprompt">What are you waiting for permission to want?</div></div>
+          </div>
+          <div class="flip-card" onclick="flip(this)">
+            <div class="fc-front"><h4>Daily Life</h4><p>Click to reveal the pattern</p></div>
+            <div class="fc-back"><h4>The Pattern</h4><p>"I don't have time / energy / support to do it differently." Circumstances as excuse rather than context.</p><div class="dprompt">In this specific moment, what choice is actually available to you?</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Discussion</h2>
+        <div class="dlist">
+          <div class="dc terra"><div class="dlbl">Opening</div><p>Which card landed most? What made it recognizable?</p></div>
+          <div class="dc"><div class="dlbl">Deeper</div><p>What would you have to give up — or give back — if you fully accepted your freedom in recovery?</p></div>
+          <div class="dc stone"><div class="dlbl">Reflection</div><p>Is there a difference between "I can't" and "I won't" in your life right now? What does it cost to keep the distinction blurry?</p></div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(1)">← Learning</button><button class="btnp" onclick="goStep(3)">Integration →</button></div>
+    </div>
+
+    <!-- Integration -->
+    <div class="sp" id="s0-p3">
+      <div class="card at-sage">
+        <h2>Things Worth Carrying Out</h2>
+        <div class="affs">
+          <div class="aff"><span class="aff-s">◆</span><div>You are not your circumstances. You are what you do with them.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Bad faith is not a character flaw — it's a coping strategy. Naming it is the first move toward something different.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Freedom is not the same as ease. Hard choices are still choices.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>The disorder has been making some of your choices. You can take them back — not all at once, but one at a time.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Closing</h2>
+        <div class="cscript">"We've been sitting with a hard idea today — that freedom is real, and that it belongs to you even when it doesn't feel like it does. I don't want to pretend that's comfortable. It isn't. But it's also the only thing that makes recovery possible.
+        <br><br>Take a moment before you leave. Notice one choice that's yours this week — something small. You don't have to make it differently yet. Just notice it's there.
+        <br><br><strong>Thank you for being willing to look at this.</strong>"</div>
+        <div class="fac" style="margin-top:1rem"><button class="facbtn" onclick="tog(this)">▶ Facilitator note</button>
+          <div class="facbody">Weekly practice: "Once this week, catch yourself saying 'I have no choice about this.' Pause and ask: is that actually true? What am I protecting myself from by believing it?" This doesn't require action — just noticing.</div>
+        </div>
+      </div>
+      <div class="btnrow">
+        <button class="btns" onclick="goStep(2)">← Practice</button>
+        <button class="btnp" onclick="markDone(0)">Complete Session I →</button>
+      </div>
+    </div>
+
+  </div><!-- /sess0 -->
+
+
+  <!-- ─────────────────────── SESSION 2: DEATH ─────────────────────── -->
+  <div class="sess-panes" id="sess1" style="display:none">
+
+    <!-- Opening -->
+    <div class="sp active" id="s1-p0">
+      <div class="card at-stone">
+        <h2>Opening <span class="timing">8–10 min</span></h2>
+        <p>Today's session is about death — not as a morbid topic, but as a fact that changes everything once you look at it honestly. Most of us work very hard not to look.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>This topic can bring up unexpected emotion. Passes are always available. There's no requirement to go anywhere you're not ready to go.</div></div>
+      </div>
+      <div class="card">
+        <h2>Arrival Practice</h2>
+        <p>Before we begin — take a breath. Notice that you're here, alive, in this room, right now. That's not nothing.</p>
+        <div class="zone-row">
+          <div class="zb green" onclick="selZone(this)"><span class="zs">◆</span>Grounded<br><small>Present, steady</small></div>
+          <div class="zb yellow" onclick="selZone(this)"><span class="zs">◇</span>Uneasy<br><small>Stirred, alert</small></div>
+          <div class="zb red" onclick="selZone(this)"><span class="zs">△</span>Distant<br><small>Shut down, numb</small></div>
+        </div>
+        <div class="emo-chips">
+          <span class="ec" onclick="selChip(this)">Heavy</span><span class="ec" onclick="selChip(this)">Reflective</span><span class="ec" onclick="selChip(this)">Avoidant</span>
+          <span class="ec" onclick="selChip(this)">Tender</span><span class="ec" onclick="selChip(this)">Sad</span><span class="ec" onclick="selChip(this)">Numb</span>
+          <span class="ec" onclick="selChip(this)">Curious</span><span class="ec" onclick="selChip(this)">Open</span><span class="ec" onclick="selChip(this)">Resistant</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Bridge Question</h2>
+        <div class="bridge"><div class="bridge-lbl">Into Today's Session</div>
+          <p>When you imagine the end of your life — not right now, but eventually — what do you most hope to have done, or been, or felt?</p>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btnp" onclick="goStep(1)">Learning →</button></div>
+    </div>
+
+    <!-- Learning -->
+    <div class="sp" id="s1-p1">
+      <div class="card at-stone">
+        <h2>Death &amp; Finitude</h2>
+        <div class="wq">"Death is the condition that makes it possible to live authentically." <cite>— Irvin Yalom</cite></div>
+        <p>The existentialists were not morbid for thinking about death constantly. They thought about it because it's the one fact that makes everything else matter. Your time is finite. That means it has weight.</p>
+        <div class="cm"><strong>Core message:</strong> Awareness of your own finitude is not something to be managed or survived — it's a resource. When it's honestly reckoned with, it clarifies what matters and strips away the things that don't.</div>
+      </div>
+      <div class="card">
+        <h2>Being-Toward-Death</h2>
+        <p>Heidegger argued that most of us live in a state of "falling" — absorbed in the everyday, distracted from the fact that we are going to die. This absorption is comfortable, but it costs us our authenticity.</p>
+        <p>When death becomes real to us — not abstract, but personally real — it can function as an "awakening experience." Suddenly, we see what we've been wasting time on.</p>
+        <div class="ib stone"><h3>What death-awareness can clarify</h3><ul>
+          <li>Which relationships are worth fighting for</li>
+          <li>Which fears are worth walking through</li>
+          <li>What you've been waiting for permission to want</li>
+          <li>How much of your life the disorder has already borrowed</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <h2>Immortality Projects</h2>
+        <p>Ernest Becker's insight in <em>The Denial of Death</em>: most human striving is an unconscious attempt to transcend mortality. We build "immortality projects" — systems that make us feel permanent, significant, invincible.</p>
+        <div class="ib terra"><h3>Eating disorders as immortality projects</h3><ul>
+          <li>Control over the body as control over vulnerability itself</li>
+          <li>Perfection as a defense against the randomness of being mortal</li>
+          <li>Shrinking as a way to feel somehow less subject to death</li>
+          <li>Rules as a substitute for the security that impermanence denies</li>
+        </ul></div>
+        <div class="fac"><button class="facbtn" onclick="tog(this)">▶ Facilitator note</button>
+          <div class="facbody">The "immortality project" frame is often very resonant — particularly the idea of control as a defense against mortality. Some people in the room may be encountering this idea for the first time and find it clarifying. Give space for that. Some may push back — that's also worth exploring.</div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(0)">← Opening</button><button class="btnp" onclick="goStep(2)">Practice →</button></div>
+    </div>
+
+    <!-- Practice -->
+    <div class="sp" id="s1-p2">
+      <div class="card at-stone">
+        <h2>The Finitude Exercise <span class="timing">15 min</span></h2>
+        <p>Three prompts, revealed one at a time. Allow silence after each. These are reflection invitations — not questions to be answered quickly.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>These prompts can touch tender places. Take them at your own pace. Passes are always here.</div></div>
+        <div class="reveal-cards">
+          <div class="rv-card">
+            <button class="rv-btn" onclick="reveal(this)"><span class="rv-num">I</span>Click to reveal Prompt One</button>
+            <div class="rv-body">If you had one year to live — with no physical limitations, no financial constraints, just your life as it is plus one year — what would you do with it? What would you stop doing?</div>
+          </div>
+          <div class="rv-card">
+            <button class="rv-btn" onclick="reveal(this)"><span class="rv-num">II</span>Click to reveal Prompt Two</button>
+            <div class="rv-body">At the end of your life, what do you think you would regret most? Not what you should regret — what do you actually think you would?</div>
+          </div>
+          <div class="rv-card">
+            <button class="rv-btn" onclick="reveal(this)"><span class="rv-num">III</span>Click to reveal Prompt Three</button>
+            <div class="rv-body">How much of your finite time has the disorder already taken? Not to create guilt — just to let that be real for a moment.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Discussion</h2>
+        <div class="dlist">
+          <div class="dc stone"><div class="dlbl">Opening</div><p>What was it like to sit with these prompts? What came up?</p></div>
+          <div class="dc"><div class="dlbl">Deeper</div><p>Is there something you've been putting off that actually matters to you? What's keeping it in the future?</p></div>
+          <div class="dc terra"><div class="dlbl">Reframe</div><p>What would change in how you approach today — just today — if you held clearly that your time is limited?</p></div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(1)">← Learning</button><button class="btnp" onclick="goStep(3)">Integration →</button></div>
+    </div>
+
+    <!-- Integration -->
+    <div class="sp" id="s1-p3">
+      <div class="card at-stone">
+        <h2>Things Worth Carrying Out</h2>
+        <div class="affs">
+          <div class="aff"><span class="aff-s">◆</span><div>Your life is finite. That's not a tragedy — it's what makes it matter.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Control over the body is not the same as control over mortality. The illusion costs more than it's worth.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>What you regret not doing is usually not less scary than what you did. It's just a different kind of grief.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Wasting time is something you actually have the power to stop doing. Not all of it. Some of it.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Closing</h2>
+        <div class="cscript">"We went somewhere today that most people avoid. I want to acknowledge that.
+        <br><br>You thought about your own death — or at least the edge of it. That takes a particular kind of courage. And I hope something useful surfaced for you, even if it was uncomfortable.
+        <br><br>Practice this week: let yourself notice one moment — just one — where you feel the preciousness of being alive. It doesn't have to be a big moment. It just has to be real.
+        <br><br><strong>Thank you for being here.</strong>"</div>
+      </div>
+      <div class="btnrow">
+        <button class="btns" onclick="goStep(2)">← Practice</button>
+        <button class="btnp" onclick="markDone(1)">Complete Session II →</button>
+      </div>
+    </div>
+  </div><!-- /sess1 -->
+
+
+  <!-- ─────────────────────── SESSION 3: ISOLATION ─────────────────────── -->
+  <div class="sess-panes" id="sess2" style="display:none">
+
+    <div class="sp active" id="s2-p0">
+      <div class="card at-blue">
+        <h2>Opening <span class="timing">8–10 min</span></h2>
+        <p>Today we're exploring something almost everyone in this room knows well: the particular aloneness that lives inside an eating disorder — and what it has to do with a bigger fact about being human.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>This topic can touch loneliness that runs deep. You don't owe anyone access to that today.</div></div>
+      </div>
+      <div class="card">
+        <h2>Arrival Practice</h2>
+        <div class="zone-row">
+          <div class="zb green" onclick="selZone(this)"><span class="zs">◆</span>Connected<br><small>Present with others</small></div>
+          <div class="zb yellow" onclick="selZone(this)"><span class="zs">◇</span>On the Edge<br><small>Half in, half out</small></div>
+          <div class="zb red" onclick="selZone(this)"><span class="zs">△</span>Behind Glass<br><small>Here but separate</small></div>
+        </div>
+        <div class="emo-chips">
+          <span class="ec" onclick="selChip(this)">Lonely</span><span class="ec" onclick="selChip(this)">Distant</span><span class="ec" onclick="selChip(this)">Tender</span>
+          <span class="ec" onclick="selChip(this)">Seen</span><span class="ec" onclick="selChip(this)">Hidden</span><span class="ec" onclick="selChip(this)">Numb</span>
+          <span class="ec" onclick="selChip(this)">Open</span><span class="ec" onclick="selChip(this)">Guarded</span><span class="ec" onclick="selChip(this)">Wistful</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Bridge Question</h2>
+        <div class="bridge"><div class="bridge-lbl">Into Today's Session</div>
+          <p>Name one person — past or present — with whom you have felt genuinely less alone. Not perfectly known, just less alone. What made that possible?</p>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btnp" onclick="goStep(1)">Learning →</button></div>
+    </div>
+
+    <div class="sp" id="s2-p1">
+      <div class="card at-blue">
+        <h2>Isolation &amp; Connection</h2>
+        <div class="wq">"The price we pay for consciousness is that we are forever alone. The most terrifying of existential concerns." <cite>— Irvin Yalom</cite></div>
+        <p>Yalom identified three distinct types of isolation, each one real and each one calling for a different response.</p>
+        <div class="cm"><strong>Core message:</strong> The deep aloneness of the eating disorder is not just a symptom — it's an existential problem wearing a clinical costume. Understanding what kind of alone you are changes what you can do about it.</div>
+      </div>
+      <div class="card">
+        <div class="ib blue"><h3>Type I — Interpersonal Isolation</h3><ul>
+          <li>Loneliness in the ordinary sense — lack of connection with others</li>
+          <li>The disorder creates and deepens this: secrecy, shame, rituals that isolate</li>
+          <li>Often the most visible type — the one people name when they say they're lonely</li>
+        </ul></div>
+        <div class="ib rose"><h3>Type II — Intrapersonal Isolation</h3><ul>
+          <li>Disconnection from parts of yourself — emotions, desires, memories, body signals</li>
+          <li>The disorder accelerates this: numbness, dissociation, rules that override inner experience</li>
+          <li>Often invisible from the outside, but felt as an inner blankness or strangeness</li>
+        </ul></div>
+        <div class="ib sage"><h3>Type III — Existential Isolation</h3><ul>
+          <li>The unbridgeable gap: no one can fully occupy your consciousness, or you theirs</li>
+          <li>This is not pathology — it's the human condition</li>
+          <li>The paradox: <em>accepting</em> existential isolation is the precondition for genuine connection</li>
+          <li>When you stop demanding to be fully known, you can actually be met</li>
+        </ul></div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(0)">← Opening</button><button class="btnp" onclick="goStep(2)">Practice →</button></div>
+    </div>
+
+    <div class="sp" id="s2-p2">
+      <div class="card at-blue">
+        <h2>The Three Rooms <span class="timing">15 min</span></h2>
+        <p>Click on each room to open it. You don't have to visit them in order.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>These rooms can contain some tender material. Enter the ones you're ready for.</div></div>
+        <div class="three-rooms">
+          <div class="room r1" onclick="openRoom(this)">
+            <h4>Room I — Interpersonal</h4>
+            <p>The loneliness you can see from the outside.</p>
+            <div class="room-expand">
+              <div class="dprompt">Who are you keeping at a distance right now — and why? Not who you should be close to. Who you actually are pushing away, and what the disorder has to do with that.</div>
+            </div>
+          </div>
+          <div class="room r2" onclick="openRoom(this)">
+            <h4>Room II — Intrapersonal</h4>
+            <p>The parts of yourself you've lost access to.</p>
+            <div class="room-expand">
+              <div class="dprompt">Which parts of you have gone quiet — feelings, wants, physical sensations, memories? Is there a part of your inner life the disorder has taken the most from?</div>
+            </div>
+          </div>
+          <div class="room r3" onclick="openRoom(this)">
+            <h4>Room III — Existential</h4>
+            <p>The aloneness that can't be fixed — only accepted.</p>
+            <div class="room-expand">
+              <div class="dprompt">Is there a way in which you've been demanding to be <em>fully</em> known — by a partner, a parent, a therapist — and experiencing the inevitable gap as rejection? What might it look like to let the gap be real, and still connect across it?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Discussion</h2>
+        <div class="dlist">
+          <div class="dc blue"><div class="dlbl">Opening</div><p>Which room are you most familiar with? Which one surprised you?</p></div>
+          <div class="dc"><div class="dlbl">Deeper</div><p>What does the disorder give you in exchange for the isolation it creates? What is it protecting you from?</p></div>
+          <div class="dc terra"><div class="dlbl">Toward connection</div><p>What would a small move toward less isolation look like for you — not perfectly connected, just less alone?</p></div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(1)">← Learning</button><button class="btnp" onclick="goStep(3)">Integration →</button></div>
+    </div>
+
+    <div class="sp" id="s2-p3">
+      <div class="card at-blue">
+        <h2>Things Worth Carrying Out</h2>
+        <div class="affs">
+          <div class="aff"><span class="aff-s">◆</span><div>The disorder's isolation is not the same as the existential aloneness. One can be addressed. One has to be accepted.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>You cannot be fully known. That's not a failure of whoever is trying. It's just true.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Being partially known — genuinely, imperfectly known — is not a consolation prize. It's what's actually available.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>The parts of yourself you've been keeping in the dark still exist. They're waiting, not gone.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Closing</h2>
+        <div class="cscript">"Isolation is one of the things the disorder does best. It makes a world of one, where the only relationship that matters is the one between you and the rules. We've been looking at that today — at all the forms of alone, and what they ask of us.
+        <br><br>Practice this week: notice one moment when you're in the presence of another person and feel less alone — even briefly. Just notice it. You don't have to do anything with it.
+        <br><br><strong>Thank you for being in the room with each other today.</strong>"</div>
+      </div>
+      <div class="btnrow">
+        <button class="btns" onclick="goStep(2)">← Practice</button>
+        <button class="btnp" onclick="markDone(2)">Complete Session III →</button>
+      </div>
+    </div>
+  </div><!-- /sess2 -->
+
+
+  <!-- ─────────────────────── SESSION 4: MEANING ─────────────────────── -->
+  <div class="sess-panes" id="sess3" style="display:none">
+
+    <div class="sp active" id="s3-p0">
+      <div class="card at-gold">
+        <h2>Opening <span class="timing">8–10 min</span></h2>
+        <p>Viktor Frankl survived Auschwitz. What he found there — and what he built from it — is the foundation of today's session. Meaning is not given. It is found, and it is made.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>Passes are always available. This topic can touch places of real despair and real aliveness. Both are welcome here.</div></div>
+      </div>
+      <div class="card">
+        <h2>Arrival Practice</h2>
+        <div class="zone-row">
+          <div class="zb green" onclick="selZone(this)"><span class="zs">◆</span>Alive<br><small>Present, engaged</small></div>
+          <div class="zb yellow" onclick="selZone(this)"><span class="zs">◇</span>Empty<br><small>Flat, going through motions</small></div>
+          <div class="zb red" onclick="selZone(this)"><span class="zs">△</span>Adrift<br><small>Lost, unmoored</small></div>
+        </div>
+        <div class="emo-chips">
+          <span class="ec" onclick="selChip(this)">Purposeful</span><span class="ec" onclick="selChip(this)">Empty</span><span class="ec" onclick="selChip(this)">Searching</span>
+          <span class="ec" onclick="selChip(this)">Grateful</span><span class="ec" onclick="selChip(this)">Hopeful</span><span class="ec" onclick="selChip(this)">Hollow</span>
+          <span class="ec" onclick="selChip(this)">Alive</span><span class="ec" onclick="selChip(this)">Curious</span><span class="ec" onclick="selChip(this)">Resigned</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Bridge Question</h2>
+        <div class="bridge"><div class="bridge-lbl">Into Today's Session</div>
+          <p>What's something you've done, experienced, or survived that felt genuinely meaningful — even if it was painful? What made it feel that way?</p>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btnp" onclick="goStep(1)">Learning →</button></div>
+    </div>
+
+    <div class="sp" id="s3-p1">
+      <div class="card at-gold">
+        <h2>Meaning &amp; Purpose</h2>
+        <div class="wq">"He who has a why to live can bear almost any how." <cite>— Friedrich Nietzsche, cited by Frankl</cite></div>
+        <p>Viktor Frankl developed logotherapy — the therapy of meaning — from his observation in the concentration camps that those with a reason to survive were more likely to survive. Not always. But significantly.</p>
+        <div class="cm"><strong>Core message:</strong> The eating disorder is a meaning system. It provides structure, purpose, identity, and direction. Recovery is not just removing that system — it's building a better one. That requires knowing where meaning actually comes from.</div>
+      </div>
+      <div class="card">
+        <h2>The Three Sources</h2>
+        <div class="ib gold"><h3>Creative Values — What You Give</h3><ul>
+          <li>Meaning found in creating, contributing, building something</li>
+          <li>Work, art, caregiving, problem-solving — anything you make or offer</li>
+          <li>The disorder often attacks this: "nothing I make is good enough"</li>
+        </ul></div>
+        <div class="ib sage"><h3>Experiential Values — What You Receive</h3><ul>
+          <li>Meaning found in beauty, love, truth, connection — what you encounter</li>
+          <li>A piece of music, a person, a landscape, a moment of understanding</li>
+          <li>The disorder often blocks this: rules and numbness close off receptivity</li>
+        </ul></div>
+        <div class="ib terra"><h3>Attitudinal Values — How You Face What Can't Be Changed</h3><ul>
+          <li>Meaning found in the stance you take toward unavoidable suffering</li>
+          <li>The "last human freedom": no one can take your attitude from you</li>
+          <li>Frankl: "We can choose our response to our circumstances"</li>
+          <li>This is the source available even when the others aren't</li>
+        </ul></div>
+        <div class="fac"><button class="facbtn" onclick="tog(this)">▶ Facilitator note</button>
+          <div class="facbody">Attitudinal values tend to land deepest for this population — the idea that even in circumstances they didn't choose, the stance they take is theirs. Connect this back to the Freedom session if you've done it. Also note: Frankl never romanticized suffering. Attitudinal meaning is not the same as "it was meant to be" or "everything happens for a reason." It's more honest than that.</div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(0)">← Opening</button><button class="btnp" onclick="goStep(2)">Practice →</button></div>
+    </div>
+
+    <div class="sp" id="s3-p2">
+      <div class="card at-gold">
+        <h2>The Meaning Compass <span class="timing">15 min</span></h2>
+        <p>Three sources, each one worth exploring. Click on a source to open its reflection prompt.</p>
+        <div class="mc-grid">
+          <div class="mc-source s1" onclick="openMC(this)">
+            <div class="mc-rune">◇</div>
+            <h4>What You Give</h4>
+            <p>Creative values — meaning through contribution</p>
+            <div class="mc-expand">
+              <div class="mc-prompt">What do you make, create, offer, or contribute that feels real to you — even in a small way? Where have you built something that mattered?</div>
+              <div class="mc-example">Examples: care for others, a skill, a thing made, a problem solved, a moment you showed up.</div>
+            </div>
+          </div>
+          <div class="mc-source s2" onclick="openMC(this)">
+            <div class="mc-rune">◆</div>
+            <h4>What You Receive</h4>
+            <p>Experiential values — meaning through encounter</p>
+            <div class="mc-expand">
+              <div class="mc-prompt">What have you loved, encountered, or been moved by? What — a person, a piece of art, a place, a moment — has made you feel the world is worth being in?</div>
+              <div class="mc-example">Examples: music that hit you at the right moment, someone who truly saw you, a landscape, a text that changed something.</div>
+            </div>
+          </div>
+          <div class="mc-source s3" onclick="openMC(this)">
+            <div class="mc-rune">△</div>
+            <h4>How You Face It</h4>
+            <p>Attitudinal values — meaning through stance</p>
+            <div class="mc-expand">
+              <div class="mc-prompt">Is there something you've faced — that you didn't choose and couldn't change — where you found a way to hold yourself with dignity? What did that look like?</div>
+              <div class="mc-example">Examples: continuing treatment when it's hard, being honest when it cost you something, staying present when everything in you wanted to leave.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Discussion</h2>
+        <div class="dlist">
+          <div class="dc gold"><div class="dlbl">Opening</div><p>Which source felt most alive for you? Which felt most blocked right now?</p></div>
+          <div class="dc"><div class="dlbl">Deeper</div><p>What does the disorder give you as a meaning substitute — and what does it cost you to keep taking that deal?</p></div>
+          <div class="dc terra"><div class="dlbl">Toward meaning</div><p>If you were living more fully from one of these three sources — which one, and what would that look like in practice?</p></div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(1)">← Learning</button><button class="btnp" onclick="goStep(3)">Integration →</button></div>
+    </div>
+
+    <div class="sp" id="s3-p3">
+      <div class="card at-gold">
+        <h2>Things Worth Carrying Out</h2>
+        <div class="affs">
+          <div class="aff"><span class="aff-s">◆</span><div>Meaning is not found by looking for it directly. It shows up as a byproduct of engaging with something beyond yourself.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>The disorder offers a meaning structure. Recovery requires building a better one — not just dismantling the old one.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Even when creative and experiential meaning feel out of reach, the attitudinal source is always available.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Frankl did not romanticize suffering. Neither should we. But dignity in difficulty is real, and it counts.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Closing</h2>
+        <div class="cscript">"Frankl's insight was hard-earned. He did not reach it in comfort. He reached it in one of the worst circumstances imaginable, and he held it — and then he shared it with the world. That's a creative value, an attitudinal value, and an experiential one all at once.
+        <br><br>I'm asking you to look at what's meaningful to you — not what should be meaningful, but what actually is. That's hard to see when the disorder has been filling that space. But it's there.
+        <br><br><strong>Thank you for being willing to look.</strong>"</div>
+      </div>
+      <div class="btnrow">
+        <button class="btns" onclick="goStep(2)">← Practice</button>
+        <button class="btnp" onclick="markDone(3)">Complete Session IV →</button>
+      </div>
+    </div>
+  </div><!-- /sess3 -->
+
+
+  <!-- ─────────────────────── SESSION 5: AUTHENTICITY ─────────────────────── -->
+  <div class="sess-panes" id="sess4" style="display:none">
+
+    <div class="sp active" id="s4-p0">
+      <div class="card at-rose">
+        <h2>Opening <span class="timing">8–10 min</span></h2>
+        <p>There is a version of you that exists inside, and a version that gets shown to the world. Today we look at the gap between them — not to close it all at once, but to see it clearly.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>This can bring up vulnerability and shame. Passes are available. You don't have to expose anything you're not ready to.</div></div>
+      </div>
+      <div class="card">
+        <h2>Arrival Practice</h2>
+        <div class="zone-row">
+          <div class="zb green" onclick="selZone(this)"><span class="zs">◆</span>Present<br><small>Showing up as me</small></div>
+          <div class="zb yellow" onclick="selZone(this)"><span class="zs">◇</span>Performing<br><small>Managing how I'm seen</small></div>
+          <div class="zb red" onclick="selZone(this)"><span class="zs">△</span>Hidden<br><small>Behind a wall</small></div>
+        </div>
+        <div class="emo-chips">
+          <span class="ec" onclick="selChip(this)">Exposed</span><span class="ec" onclick="selChip(this)">Defended</span><span class="ec" onclick="selChip(this)">Seen</span>
+          <span class="ec" onclick="selChip(this)">Invisible</span><span class="ec" onclick="selChip(this)">Tender</span><span class="ec" onclick="selChip(this)">Shame</span>
+          <span class="ec" onclick="selChip(this)">Curious</span><span class="ec" onclick="selChip(this)">Tired</span><span class="ec" onclick="selChip(this)">Hopeful</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Bridge Question</h2>
+        <div class="bridge"><div class="bridge-lbl">Into Today's Session</div>
+          <p>Is there a part of yourself that almost no one gets to see? Not a shameful secret — just a real part of you that lives mostly in private. What would it mean for that part to exist more openly?</p>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btnp" onclick="goStep(1)">Learning →</button></div>
+    </div>
+
+    <div class="sp" id="s4-p1">
+      <div class="card at-rose">
+        <h2>Authenticity &amp; Self-Deception</h2>
+        <div class="wq">"Authenticity is a relational good — it requires both the courage to be yourself and the courage to let others see you." <cite>— adapted from Charles Taylor</cite></div>
+        <p>Authenticity is not about finding some perfect inner self. It's about the gap — the distance between what you actually experience and what you allow to show. Recovery often requires narrowing that gap, which is frightening.</p>
+        <div class="cm"><strong>Core message:</strong> The eating disorder creates and maintains the gap. It offers a performed identity that feels safer than the real one. Recovery is, in part, the willingness to let the real one be seen — even imperfectly.</div>
+      </div>
+      <div class="card">
+        <h2>Bad Faith Revisited</h2>
+        <p>Sartre's bad faith appears in authenticity work as the tendency to become a "thing" — to define yourself by your role, your disorder, your diagnosis, rather than inhabiting your freedom moment by moment.</p>
+        <div class="ib rose"><h3>The false self protects against…</h3><ul>
+          <li>The terror of being known and still rejected</li>
+          <li>The grief of having hidden for so long</li>
+          <li>The vulnerability of wanting things openly</li>
+          <li>The responsibility that comes with being fully present</li>
+        </ul></div>
+        <div class="ib sage"><h3>What authentic living asks for</h3><ul>
+          <li>Letting your actual emotional state be visible — not performing calm or OK</li>
+          <li>Saying what you need, even when it might not be given</li>
+          <li>Being in your body rather than managing it</li>
+          <li>Allowing relationships to include who you actually are</li>
+        </ul></div>
+        <div class="fac"><button class="facbtn" onclick="tog(this)">▶ Facilitator note</button>
+          <div class="facbody">Authenticity work can easily become shaming — "you're not being your true self" can land as yet another way to be wrong. Emphasize that the gap is not a failure. It developed for reasons. The question is whether it still serves you, and whether it costs you more than it protects you. The work is not about exposure — it's about choosing which gaps to narrow.</div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(0)">← Opening</button><button class="btnp" onclick="goStep(2)">Practice →</button></div>
+    </div>
+
+    <div class="sp" id="s4-p2">
+      <div class="card at-rose">
+        <h2>The Gap Map <span class="timing">15 min</span></h2>
+        <p>Six domains of the self. For each one: what lives on the inside, and what gets shown to the world? This is a reflection tool, not a confession booth. Look at what's interesting to you.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>You are not required to share anything from this exercise. It's for your own looking.</div></div>
+        <div class="gap-map">
+          <div class="gap-col inside">
+            <h4>What's Inside</h4>
+            <div class="gap-row"><span class="domain">Feelings</span><span class="inside-val">What I actually feel</span></div>
+            <div class="gap-row"><span class="domain">Needs</span><span class="inside-val">What I actually need</span></div>
+            <div class="gap-row"><span class="domain">Dreams</span><span class="inside-val">What I actually want</span></div>
+            <div class="gap-row"><span class="domain">Fears</span><span class="inside-val">What actually scares me</span></div>
+            <div class="gap-row"><span class="domain">Values</span><span class="inside-val">What I actually care about</span></div>
+            <div class="gap-row"><span class="domain">Body</span><span class="inside-val">What my body actually experiences</span></div>
+          </div>
+          <div class="gap-col outside">
+            <h4>What Gets Shown</h4>
+            <div class="gap-row"><span class="domain">Feelings</span><span class="outside-val">What I perform/manage</span></div>
+            <div class="gap-row"><span class="domain">Needs</span><span class="outside-val">What I ask for (or don't)</span></div>
+            <div class="gap-row"><span class="domain">Dreams</span><span class="outside-val">What I say I want</span></div>
+            <div class="gap-row"><span class="domain">Fears</span><span class="outside-val">What I let others see</span></div>
+            <div class="gap-row"><span class="domain">Values</span><span class="outside-val">What I demonstrate</span></div>
+            <div class="gap-row"><span class="domain">Body</span><span class="outside-val">How I present my body</span></div>
+          </div>
+        </div>
+        <div class="ib rose" style="margin-top:1rem"><h3>Reflection prompt</h3><ul>
+          <li>Which gap is the most costly for you?</li>
+          <li>Which gap does the disorder most depend on?</li>
+          <li>What would it take to narrow one of them by one inch?</li>
+        </ul></div>
+      </div>
+      <div class="card">
+        <h2>Discussion</h2>
+        <div class="dlist">
+          <div class="dc rose"><div class="dlbl">Opening</div><p>What domain felt most recognizable to you — where the gap is biggest or most familiar?</p></div>
+          <div class="dc"><div class="dlbl">Deeper</div><p>What is the gap protecting? What would happen if the inside and outside moved a little closer together?</p></div>
+          <div class="dc terra"><div class="dlbl">One inch</div><p>What would narrowing the gap by one inch look like — something small, real, and possible?</p></div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(1)">← Learning</button><button class="btnp" onclick="goStep(3)">Integration →</button></div>
+    </div>
+
+    <div class="sp" id="s4-p3">
+      <div class="card at-rose">
+        <h2>Things Worth Carrying Out</h2>
+        <div class="affs">
+          <div class="aff"><span class="aff-s">◆</span><div>The gap developed for reasons. Understanding why it exists is different from deciding it should stay.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Authenticity is not all-or-nothing. Narrowing the gap by one inch, in one relationship, in one moment — that counts.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>The real self is not more fragile than the performed one. It just feels that way until it's been tested.</div></div>
+          <div class="aff"><span class="aff-s">◆</span><div>Being seen and still accepted is one of the most healing experiences available. It requires risk. It is worth the risk.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Closing</h2>
+        <div class="cscript">"The gap is real. Most of us who've been through hard things built it for good reasons. Today we just looked at it — where it shows up, what it protects, what it costs.
+        <br><br>You don't have to close it all at once. You don't have to close it at all today. But I hope you have a clearer picture of where it lives.
+        <br><br>Practice this week: find one moment where you let something real show — something small — and notice what happens.
+        <br><br><strong>Thank you for showing up today.</strong>"</div>
+      </div>
+      <div class="btnrow">
+        <button class="btns" onclick="goStep(2)">← Practice</button>
+        <button class="btnp" onclick="markDone(4)">Complete Session V →</button>
+      </div>
+    </div>
+  </div><!-- /sess4 -->
+
+
+  <!-- ─────────────────────── SESSION 6: SUFFERING ─────────────────────── -->
+  <div class="sess-panes" id="sess5" style="display:none">
+
+    <div class="sp active" id="s5-p0">
+      <div class="card at-terra">
+        <h2>Opening <span class="timing">8–10 min</span></h2>
+        <p>This is the last session. We've been building toward this one — because suffering is where all the other questions converge. Freedom, death, isolation, meaning, authenticity: they all show up in how we face what's hard.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>This topic asks something real of you. Passes are always here. Take what you need.</div></div>
+      </div>
+      <div class="card">
+        <h2>Arrival Practice</h2>
+        <div class="zone-row">
+          <div class="zb green" onclick="selZone(this)"><span class="zs">◆</span>Steady<br><small>Can face this</small></div>
+          <div class="zb yellow" onclick="selZone(this)"><span class="zs">◇</span>Weighted<br><small>Carrying something</small></div>
+          <div class="zb red" onclick="selZone(this)"><span class="zs">△</span>Raw<br><small>Close to the bone</small></div>
+        </div>
+        <div class="emo-chips">
+          <span class="ec" onclick="selChip(this)">Grieving</span><span class="ec" onclick="selChip(this)">Resilient</span><span class="ec" onclick="selChip(this)">Tired</span>
+          <span class="ec" onclick="selChip(this)">Determined</span><span class="ec" onclick="selChip(this)">Heavy</span><span class="ec" onclick="selChip(this)">Grateful</span>
+          <span class="ec" onclick="selChip(this)">Tender</span><span class="ec" onclick="selChip(this)">Numb</span><span class="ec" onclick="selChip(this)">Open</span>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Bridge Question</h2>
+        <div class="bridge"><div class="bridge-lbl">Into Today's Session</div>
+          <p>Is there something you've been through that you wouldn't choose — but that shaped something true and real in you? You don't have to name it out loud. Just notice if it's there.</p>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btnp" onclick="goStep(1)">Learning →</button></div>
+    </div>
+
+    <div class="sp" id="s5-p1">
+      <div class="card at-terra">
+        <h2>Suffering &amp; Growth</h2>
+        <div class="wq">"Everything can be taken from a man but one thing: the last of the human freedoms — to choose one's attitude in any given set of circumstances." <cite>— Viktor Frankl</cite></div>
+        <p>Frankl was not optimistic about suffering. He was honest about it. He did not claim it was good, or meant to be, or secretly a gift. He claimed something harder and more useful: that the stance you take toward it is yours.</p>
+        <div class="cm"><strong>Core message:</strong> Not all suffering is meaningful. Some of it is just suffering. But even in suffering you didn't choose and couldn't avoid, you retain the freedom to choose your attitude — and that choice is itself a source of meaning.</div>
+      </div>
+      <div class="card">
+        <h2>The Last Human Freedom</h2>
+        <div class="ib terra"><h3>Meaningful vs. meaningless suffering</h3><ul>
+          <li>Meaningful suffering: unavoidable, faced with dignity — it shapes you toward something</li>
+          <li>Meaningless suffering: chosen, maintained, or created for its own sake — the disorder often produces this</li>
+          <li>The question is not "is this suffering" — it's "does this suffering have to be this way?"</li>
+        </ul></div>
+        <div class="ib stone"><h3>Post-traumatic growth — honestly</h3><ul>
+          <li>Not "what doesn't kill me makes me stronger" — that romanticizes it</li>
+          <li>More accurately: "I was broken. Something new was forged in the breaking."</li>
+          <li>Growth is not the same as being glad it happened</li>
+          <li>You are allowed to hold both: this was terrible AND it made me who I am</li>
+        </ul></div>
+        <div class="ib sage"><h3>The Phoenix archetype</h3><ul>
+          <li>Fire consumes what cannot survive fire</li>
+          <li>What remains is what was always real</li>
+          <li>Recovery is not returning to who you were before — it's becoming someone new</li>
+          <li>The person who recovers is always changed. That's not a loss.</li>
+        </ul></div>
+        <div class="fac"><button class="facbtn" onclick="tog(this)">▶ Facilitator note</button>
+          <div class="facbody">Be careful with the "growth" framing — for some people, hearing that suffering produces growth can feel invalidating of their actual pain, or like pressure to find a silver lining. Keep the language honest: growth happens alongside grief, not instead of it. And not everyone experiences growth from trauma — that's real too, and should be acknowledged.</div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(0)">← Opening</button><button class="btnp" onclick="goStep(2)">Practice →</button></div>
+    </div>
+
+    <div class="sp" id="s5-p2">
+      <div class="card at-terra">
+        <h2>The Forge <span class="timing">15 min</span></h2>
+        <p>Three stages of meaning-making from unavoidable suffering. Click each stage to open it.</p>
+        <div class="pass"><span class="pass-sym">◇</span><div>This exercise asks for something real. Take it at your own pace. You don't have to name anything you're not ready to name.</div></div>
+        <div class="forge-stages">
+          <div class="forge-stage" onclick="openForge(this)">
+            <div class="forge-num">Stage I</div>
+            <h4>Name the difficulty</h4>
+            <p>What is the suffering — or the thing you've had to face — that you didn't choose?</p>
+            <div class="forge-expand">
+              <div class="forge-ex">This doesn't have to be the hardest thing you've ever been through. It can be something in your recovery, something in your history, something you're living right now. The question is: what have you been given that you did not ask for?</div>
+            </div>
+          </div>
+          <div class="forge-stage" onclick="openForge(this)">
+            <div class="forge-num">Stage II</div>
+            <h4>Name the stance</h4>
+            <p>What attitude have you taken — or could you take — toward it?</p>
+            <div class="forge-expand">
+              <div class="forge-ex">This is Frankl's attitudinal value. Not how you feel about it — how you hold it. Examples: enduring it with honesty. Continuing to seek help even when it's not working. Refusing to let it be the only story about you. Not pretending it's fine when it isn't. Staying in your body even when it's hard.</div>
+            </div>
+          </div>
+          <div class="forge-stage" onclick="openForge(this)">
+            <div class="forge-num">Stage III</div>
+            <h4>Name what it shaped</h4>
+            <p>Is there something in you — a capacity, a knowing, a way of being — that exists because of what you've been through?</p>
+            <div class="forge-expand">
+              <div class="forge-ex">You are not required to be grateful for your suffering. You are allowed to acknowledge what it made you capable of — without that being an endorsement of what caused it. The two things can be true at once.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Discussion</h2>
+        <div class="dlist">
+          <div class="dc terra"><div class="dlbl">Opening</div><p>What was it like to move through those three stages? Did any one of them feel impossible?</p></div>
+          <div class="dc"><div class="dlbl">The distinction</div><p>What's the difference — for you — between meaningful and meaningless suffering? How do you know which is which?</p></div>
+          <div class="dc stone"><div class="dlbl">Recovery as meaning</div><p>Is there a way that being in recovery — being here today — is itself an act of meaning-making? What attitudinal value does showing up represent?</p></div>
+        </div>
+      </div>
+      <div class="btnrow"><button class="btns" onclick="goStep(1)">← Learning</button><button class="btnp" onclick="goStep(3)">Integration →</button></div>
+    </div>
+
+    <div class="sp" id="s5-p3">
+      <div class="card at-terra">
+        <h2>Things Worth Carrying From the Whole Curriculum</h2>
+        <div class="affs">
+          <div class="aff"><span class="aff-s">ᚠ</span><div><strong>Freedom:</strong> You are radically free. Every choice, including the choice to recover, is yours.</div></div>
+          <div class="aff"><span class="aff-s">ᛞ</span><div><strong>Death:</strong> Your time is finite. That's what makes it matter. Don't waste it on the disorder's terms.</div></div>
+          <div class="aff"><span class="aff-s">ᛁ</span><div><strong>Isolation:</strong> You cannot be fully known. You can be genuinely met. That's enough.</div></div>
+          <div class="aff"><span class="aff-s">ᛗ</span><div><strong>Meaning:</strong> Life doesn't come with built-in meaning. You make it — through what you give, what you receive, and how you face what's hard.</div></div>
+          <div class="aff"><span class="aff-s">ᛋ</span><div><strong>Authenticity:</strong> The gap between who you are and who you show is closeable. One inch at a time.</div></div>
+          <div class="aff"><span class="aff-s">ᛈ</span><div><strong>Suffering:</strong> Your last freedom — always — is the stance you take. No one can take that from you.</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h2>Closing — Curriculum Complete</h2>
+        <div class="cscript">"Six sessions. Six hard questions. You showed up for all of it — or enough of it.
+        <br><br>You talked about freedom and how terrifying it is. You looked at your own finitude. You named the ways you've been alone. You found sources of meaning in the middle of suffering. You looked at the gap between who you are and who you show. And today, you faced the suffering itself.
+        <br><br>These are the questions the disorder tries to answer for you — badly. Recovery is not the absence of these questions. It's learning to live with them honestly, in relationship, without needing the disorder to manage the weight.
+        <br><br><strong>Life is hard. And it is worth living. Both of those are true. You've been proving it by being here.</strong>"</div>
+        <div class="complete-badge" style="margin-top:1.5rem">
+          <div class="cb-rune">◆ ᚠ ᛞ ᛁ ᛗ ᛋ ᛈ ◆</div>
+          <h3>Curriculum Complete</h3>
+          <p>The work doesn't end here. These questions keep coming up. That's life.<br>But now you have the questions — and that changes what you can do with the answers.</p>
+        </div>
+      </div>
+      <div class="btnrow">
+        <button class="btns" onclick="goStep(2)">← Practice</button>
+        <button class="btnp" onclick="markDone(5)">Complete Session VI →</button>
+      </div>
+    </div>
+  </div><!-- /sess5 -->
+
+</div><!-- /sessionView -->
+</div><!-- /app -->
+
+<footer style="text-align:center;padding:2rem 1rem;color:var(--stone);font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.08em">
+  <p>LIFE WORTH LIVING &nbsp;·&nbsp; Existential Group Curriculum &nbsp;·&nbsp; Facilitator: Brian Nuckols &nbsp;·&nbsp; Center for Discovery</p>
+  <p style="margin-top:.5rem;font-family:'EB Garamond',serif;font-size:.88rem;letter-spacing:normal">
+    If you or a participant is in crisis: <a href="tel:988" style="color:var(--dterra)">988 Suicide &amp; Crisis Lifeline</a> &nbsp;·&nbsp; <a href="tel:741741" style="color:var(--dterra)">Crisis Text: HOME to 741741</a>
+  </p>
+</footer>
+
+<script>
+const SESSION_META = [
+  {rune:'ᚠ', lbl:'Session I', title:'Freedom', theme:'The Terror & Gift of Choice', cls:'sage'},
+  {rune:'ᛞ', lbl:'Session II', title:'Death', theme:'Your Finite, Precious Life', cls:'stone'},
+  {rune:'ᛁ', lbl:'Session III', title:'Isolation', theme:'Alone Together', cls:'blue'},
+  {rune:'ᛗ', lbl:'Session IV', title:'Meaning', theme:'Where Meaning Lives', cls:'gold'},
+  {rune:'ᛋ', lbl:'Session V', title:'Authenticity', theme:'The Gap Within', cls:'rose'},
+  {rune:'ᛈ', lbl:'Session VI', title:'Suffering', theme:'The Phoenix Story', cls:'terra'},
+];
+
+let curSess = 0;
+let curStep = 0;
+const STEPS = 4;
+
+// localStorage progress
+let prog = JSON.parse(localStorage.getItem('lwl_prog') || '{}');
+function saveProgress(){ localStorage.setItem('lwl_prog', JSON.stringify(prog)); }
+
+function updateProgressBar(){
+  const done = Object.keys(prog).filter(k => prog[k]).length;
+  const pct = Math.round((done/6)*100);
+  document.getElementById('cpFill').style.width = pct + '%';
+  document.getElementById('cpFrac').textContent = done + ' of 6 sessions';
+  // update chapter cards
+  SESSION_META.forEach((_,i) => {
+    const cc = document.querySelectorAll('.cc')[i];
+    if(prog['sess_'+i]) cc.classList.add('done'); else cc.classList.remove('done');
+  });
+}
+
+function openSession(i){
+  curSess = i; curStep = 0;
+  const m = SESSION_META[i];
+  document.getElementById('sHdrRune').textContent = m.rune;
+  document.getElementById('sHdrLbl').textContent = m.lbl;
+  document.getElementById('sHdrTitle').textContent = m.title;
+  document.getElementById('sHdrTheme').textContent = m.theme;
+  document.getElementById('sHdrRune').className = 'sess-rune';
+  // hide all sess-panes
+  document.querySelectorAll('.sess-panes').forEach(s => s.style.display = 'none');
+  document.getElementById('sess'+i).style.display = 'block';
+  // activate first step
+  activateStep(0);
+  document.getElementById('overview').style.display = 'none';
+  document.getElementById('sessionView').style.display = 'block';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function backToOverview(){
+  document.getElementById('sessionView').style.display = 'none';
+  document.getElementById('overview').style.display = 'block';
+  updateProgressBar();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function goStep(n){
+  curStep = n;
+  activateStep(n);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+function activateStep(n){
+  // tabs
+  document.querySelectorAll('.st').forEach((t,i) => {
+    t.classList.toggle('active', i === n);
+    t.classList.toggle('done', i < n);
+  });
+  // panes within current session
+  const sessEl = document.getElementById('sess'+curSess);
+  sessEl.querySelectorAll('.sp').forEach((p,i) => {
+    p.classList.toggle('active', i === n);
+  });
+}
+
+function markDone(sessIdx){
+  prog['sess_'+sessIdx] = true;
+  saveProgress();
+  backToOverview();
+}
+
+function tog(btn){
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+  btn.textContent = body.classList.contains('open')
+    ? btn.textContent.replace('▶','▼')
+    : btn.textContent.replace('▼','▶');
+}
+
+function selZone(el){
+  el.closest('.zone-row').querySelectorAll('.zb').forEach(z => z.classList.remove('sel'));
+  el.classList.add('sel');
+}
+function selChip(el){ el.classList.toggle('sel'); }
+function flip(el){ el.classList.toggle('flipped'); }
+
+function reveal(btn){
+  const body = btn.nextElementSibling;
+  body.classList.toggle('open');
+  if(body.classList.contains('open')){
+    btn.querySelector('.rv-num').textContent = '✓';
+  }
+}
+
+function openRoom(el){
+  el.closest('.three-rooms').querySelectorAll('.room').forEach(r => r.classList.remove('open'));
+  el.classList.toggle('open');
+}
+
+function openMC(el){
+  el.closest('.mc-grid').querySelectorAll('.mc-source').forEach(s => s.classList.remove('open'));
+  el.classList.toggle('open');
+}
+
+function openForge(el){
+  el.classList.toggle('open');
+}
+
+// init
+updateProgressBar();
+</script>
+</body>
+</html>
